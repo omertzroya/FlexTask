@@ -1,0 +1,107 @@
+:root {
+    --background-black: #141414;
+    --dark-gray: #1a1a1a;
+    --text-white: #ffffff;
+    --accent-red: #e50914;
+    --text-gray: #888;
+}
+
+.movie-details-container {
+    background-color: var(--background-black);
+    color: var(--text-white);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.back-button {
+    background-color: var(--dark-gray);
+    color: var(--text-white);
+    border: 1px solid #333;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #2c2c2c;
+}
+
+.movie-details-content {
+    background-color: var(--dark-gray);
+    border-radius: 4px;
+    padding: 30px;
+    border: 1px solid #333;
+}
+
+.movie-details-content h1 {
+    color: var(--text-white);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.movie-details-content p {
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.movie-poster {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 4px;
+    margin: 0 auto 20px;
+    display: block;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.movie-details-content h2 {
+    color: var(--text-gray);
+    margin: 15px 0;
+    font-size: 1.2rem;
+}
+
+.movie-cast {
+    margin-top: 30px;
+}
+
+.movie-cast h2 {
+    color: var(--text-white);
+    margin-bottom: 15px;
+}
+
+.movie-cast ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.movie-cast li {
+    background-color: #2c2c2c;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    color: var(--text-gray);
+    transition: background-color 0.3s ease;
+}
+
+.movie-cast li:hover {
+    background-color: var(--accent-red);
+    color: var(--text-white);
+}
+
+.loading, .error {
+    background-color: var(--background-black);
+    color: var(--text-white);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
