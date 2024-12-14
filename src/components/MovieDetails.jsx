@@ -9,47 +9,65 @@ const MovieDetails = ({ type }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const details = useSelector((state) => state.movieDetails.details);
-    const isLoading = useSelector((state) => state.movieDetails.isLoading); // מצב טעינה מה-redux
+    const isLoading = useSelector((state) => state.movieDetails.isLoading);
 
     useEffect(() => {
         dispatch(fetchMovieDetails(type, id));
     }, [type, id, dispatch]);
 
     if (isLoading || !details) {
-        return <div>Loading...</div>; // מסך טעינה
+        return (
+            <div className="netflix-loading">
+                <div className="netflix-spinner"></div>
+            </div>
+        );
     }
 
+
+    const matchPercentage = Math.floor(details.vote_average * 10);
+
     return (
-        <div className="movie-details-container">
-            <button onClick={() => navigate('/')} className="back-button">Back to Home</button>
+        <div className="netflix-movie-details">
+            <div 
+                className="movie-backdrop" 
+                style={{
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url(https://image.tmdb.org/t/p/original${details.backdrop_path})`
+                }}
+            >
+                <button 
+                    className="netflix-back-button" 
+                    onClick={() => navigate('/')}
+                >
+                    ← Back to Browse
+                </button>
 
-            <div className="movie-details-header">
-                <img
-                    src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
-                    alt={details.title || details.name}
-                    className="movie-details-poster"
-                />
-                <div className="movie-details-info">
-                    <h1>{details.title || details.name}</h1>
-                    <p><strong>Release Date:</strong> {details.release_date || details.first_air_date}</p>
-                    <p><strong>Rating:</strong> {details.vote_average} / 10</p>
-                    <p><strong>Overview:</strong> {details.overview}</p>
+                <div className="movie-header">
+                    <img 
+                        src={`https://image.tmdb.org/t/p/w500${details.poster_path}`} 
+                        alt={details.title || details.name} 
+                        className="movie-poster" 
+                    />
+                    <div className="movie-info">
+                        <h1>{details.title || details.name}</h1>
+                        <div className="movie-metadata">
+                            <span className="match-percentage">{matchPercentage}% Match</span>
+                            <span className="release-year">
+                                {new Date(details.release_date || details.first_air_date).getFullYear()}
+                            </span>
+                            {details.runtime && <span>{details.runtime} min</span>}
+                            {details.number_of_seasons && <span>{details.number_of_seasons} Seasons</span>}
+                        </div>
+                        
+                        <p className="movie-description">{details.overview}</p>
+                        
+                        {details.genres && (
+                            <div className="movie-genres">
+                                <strong>Genres: </strong>
+                                {details.genres.map((genre) => genre.name).join(', ')}
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
-
-            <div className="movie-details-extra">
-                {details.genres && (
-                    <p><strong>Genres:</strong> {details.genres.map((genre) => genre.name).join(', ')}</p>
-                )}
-                {details.runtime && (
-                    <p><strong>Runtime:</strong> {details.runtime} minutes</p>
-                )}
-                {details.number_of_seasons && (
-                    <p><strong>Seasons:</strong> {details.number_of_seasons}</p>
-                )}
-                {details.number_of_episodes && (
-                    <p><strong>Episodes:</strong> {details.number_of_episodes}</p>
-                )}
             </div>
         </div>
     );
