@@ -1,0 +1,123 @@
+:root {
+    --background-black: #141414;
+    --dark-gray: #1a1a1a;
+    --text-white: #ffffff;
+    --accent-red: #e50914;
+    --hover-gray: #2c2c2c;
+    --card-border: #333;
+}
+
+body {
+    background-color: var(--background-black);
+    color: var(--text-white);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.popular-movies-container {
+    background-color: var(--background-black);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.popular-movies-container h1 {
+    color: var(--text-white);
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.filter-buttons {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.filter-buttons button {
+    background-color: var(--dark-gray);
+    color: var(--text-white);
+    border: 1px solid var(--card-border);
+    padding: 10px 20px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+.filter-buttons button:hover {
+    background-color: var(--hover-gray);
+}
+
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.movie-card {
+    background-color: var(--dark-gray);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--card-border);
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.movie-card.selected {
+    border: 2px solid var(--accent-red);
+}
+
+.movie-poster {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.movie-title {
+    color: var(--text-white);
+    padding: 10px;
+    margin: 0;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.favorite-button {
+    background-color: var(--accent-red);
+    color: var(--text-white);
+    border: none;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.favorite-button:hover {
+    background-color: #f0203a;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.page-button {
+    background-color: var(--dark-gray);
+    color: var(--text-white);
+    border: 1px solid var(--card-border);
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.page-button:disabled {
+    background-color: #4d4d4d;
+    cursor: not-allowed;
+}
